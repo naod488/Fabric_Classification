@@ -7,7 +7,7 @@ from uuid import uuid1
 
 APP = Flask(__name__)
 
-MODEL = tf.keras.models.load_model("a_model_Aug_V5.h5")
+MODEL = tf.keras.models.load_model("Model-4a-Aug-fa.h5")
 TYPES = ['Cotton', 'Denim', 'Nylon', 'Polyester', 'Silk', 'Wool']
 
 TYPE_INFO_DICT = {

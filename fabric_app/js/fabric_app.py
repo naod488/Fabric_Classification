@@ -6,7 +6,7 @@ import sys
 from PIL import ImageTk, Image
 from tkinter import filedialog
 
-model = load_model("a_model_Aug_V5.h5")
+model = load_model("Model-4a-Aug-fa.h5")
 types = ['Cotton', 'Denim', 'Nylon', 'Polyester', 'Silk', 'Wool']
 
 
