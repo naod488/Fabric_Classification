@@ -38,19 +38,21 @@ when multiple users upload an image with possibly the same name at the same time
 
 Limitations:
 - The classifcation result does not have the option to label the image uploaded as none of the fabric types.
-- The image to be classified is expted to possess a resolution of 400x400 for larger image, only the top left 400x400 pixels are evaluated,
-  for that reason the image needs to be a very close up shoot roughly 6cm distance zoomed in dependent on kamera quality.
-  (see one of the datasets for reference)
+- The image to be classified is expted to possess a resolution of 400x400 for larger images, will be scaled down for evaluation,
+  for that reason the image needs to be of a very high quality and close up, and possibly cropped.
 
+There exist two alternate implementations, on using python tkinter and the other using node js,
+these implementation are functionaly complete in terms of allowing an image to be loaded and classified.
+To run: 
+- Tkinter: execute "fabric_app.py" libraries required view imports at the top of file source
+- Node.js: execute the "node ." command within the folder after you see the host and port number displayed
+  navigate to localhost:3000 (default configuration)
 # Utility files
-Dataset_Analysis(...).ipynb:
+Dataset_Analysis('fabrics_...').ipynb:
 Loads the images and displays a figure for the number of samples in each category by detecting the number of png files in each subfolder
 
 my_utils.py:
 a file with helper functions for the model creation notebook files, which is expected to be located with the same folder as the notebook files themselves
-
-model_loader.ipynb:
-Allows to load custom datasets and perform a mass prediction on them with a model specified by a model path
 
 # Fair use
 This project falls under fair use, results in the form of the fabrics dataset and datasets derived from this dataset and the trained model h5 files
