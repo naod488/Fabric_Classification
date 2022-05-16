@@ -46,63 +46,51 @@ TYPE_INFO_DICT = {
 
 
 def predict(save_path: str):
-    #try:
-        imgSize = (400, 400)
-        img = tf.keras.preprocessing.image.load_img(
-            save_path, target_size=imgSize)
-        
-        img_array = tf.keras.preprocessing.image.img_to_array(img)
-        img_array = tf.expand_dims(img_array, 0)  # Create batch axis
-
-        pred = MODEL.predict(img_array)
-        
-        score = tf.nn.softmax(pred[0])
-        result = f"This image most likely belongs to {TYPES[np.argmax(score)]} with a predictive power of {np.round(100 * np.max(score), 2)}%."
-        return result, score
+    imgSize = (400, 400)
+    img = tf.keras.preprocessing.image.load_img(
+        save_path, target_size=imgSize)
     
-    #except Exception as e:
-    #    return "Image invalid: " + str(e), ""
+    img_array = tf.keras.preprocessing.image.img_to_array(img)
+    img_array = tf.expand_dims(img_array, 0)  # Create batch axis
+
+    pred = MODEL.predict(img_array)
+    
+    score = tf.nn.softmax(pred[0])
+    result = f"This image most likely belongs to {TYPES[np.argmax(score)]} with a predictive power of {np.round(100 * np.max(score), 2)}%."
+    return result, score
 
 def showConfidence(predictions):
-    #try:
-        counts = 0
-        valuePairs = []
-        for val in predictions[0:6]:
-            pair = []
-            pair.append(TYPES[counts]) 
-            pair.append(np.round(100 * float(val), 2))
-            counts += 1
-            
-            valuePairs.append(pair)
+    counts = 0
+    valuePairs = []
+    for val in predictions[0:6]:
+        pair = []
+        pair.append(TYPES[counts]) 
+        pair.append(np.round(100 * float(val), 2))
+        counts += 1
+        
+        valuePairs.append(pair)
 
-        print(valuePairs)
-        valuePairs.sort(key=lambda x: x[1], reverse=True)
+    print(valuePairs)
+    valuePairs.sort(key=lambda x: x[1], reverse=True)
 
-        outputValues = []
-        for pair in valuePairs:
-            outputValues.append(f"{pair[0]}: {pair[1]}%")
+    outputValues = []
+    for pair in valuePairs:
+        outputValues.append(f"{pair[0]}: {pair[1]}%")
 
-        return outputValues
-
-    #except Exception as e:
-    #    return "Image invalid: " + str(e)
+    return outputValues
 
 def open_img(name: str):
-    #try:
-        #display the calssification results
-        result, predictions = predict(name)
+    #display the calssification results
+    result, predictions = predict(name)
 
-        #variable for the classification type
-        predType = TYPES[np.argmax(predictions)]
+    #variable for the classification type
+    predType = TYPES[np.argmax(predictions)]
 
-        #display the confidence values for the other options
-        values = showConfidence(predictions)
-        
-        #return result, values, predictions
-        return result, predType, values
-    #except Exception as e:
-    #    return "An error occured" + str(e), "unable to classifiy the image", [""]
-
+    #display the confidence values for the other options
+    values = showConfidence(predictions)
+    
+    #return result, values, predictions
+    return result, predType, values
 
 @APP.route('/')
 def home():
@@ -112,14 +100,19 @@ def home():
                     The classifier uses a convolutional neural network for the purposes of
                     image classification.<br>
                     It possess the ability to distinguish among 6 fabrics 
-                    [Cotton, Denim, Nylon, Polyester, Silk, Wool], with the limitation of an 
-                    inability to classify a fabric as none of the 6 options.<br>
+                    [Cotton, Denim, Nylon, Polyester, Silk, Wool].<br>
                     <br>
-                    To record and upload your image ensure that the top left 400 pixels are sharp or
-                    that the image taken is in a 400x400 resolution, taken from aproximately 6cm
-                    of the fabrics surface with 4 times zoom, looking straight at the fabric with no direct shadow casted onto 
-                    the surface.<br>
-                    For examples on how images should look like visit https://ibug.doc.ic.ac.uk/resources/fabrics/.<br>
+                    To record and upload your image ensure that the image is close up, as sharp as possible and of 400x400 resolution, 
+                    or croped down to the specified resolution from a larger image, 
+                    it should be taken looking straight at the fabric with no direct shadow or light obscuring the image.<br>
+                    For examples on how images should look like visit www.ibug.doc.ic.ac.uk/resources/fabrics/.<br>
+                    <br>
+                    Limitations:<br>
+                    The default model confirgured for use for this web application is a convolutional neural network that has achieved
+                    an over 75 precent accuracy on the validation split of the dataset it was trained on, provided on www.ibug.doc.ic.ac.uk/resources/fabrics/,<br>
+                    as such the models shows to the environment in which the original data is taken in am struggles to perform well on custom data
+                    showing an accuracy of ~25 on a set of 22 images of cotton fabrics, 11 taken by a Sony camera and phone each.<br>
+                    Therefore major caution is advised when relying on the results provided by this module on custom data.<br>
                     <br>
                     Operation:<br>
                     <ul>
@@ -127,7 +120,7 @@ def home():
                     on your device.</li>
                     <li>Press the upload button.</li>
                     <li>If no errors occurred you will be shown the classification results for the
-                    uploaded image in the form of a % which indicates of the identifiable fabrics
+                    uploaded image in the form of a % which indicates, of the identifiable fabrics,
                     which image has the largest likelihood to be of a certain fabric.</li>
                     <li>In addtion to that a short summary will be provided on how you can perform a test to
                     be certain that the fabric was corretly identified.</li>
