@@ -70,7 +70,7 @@ def display_image(train_ds):
             plt.title(class_names[labels[i]])
             plt.axis("off")
 
-#data augmentation based of https://keras.io/examples/vision/image_classification_from_scratch/
+#based of https://keras.io/examples/vision/image_classification_from_scratch/
 # displays images with augmentaition applied
 def display_augmentation(train_ds, data_augmentation):
     #visualize the effect of the augmentations on a sample image

@@ -11,13 +11,13 @@ MODEL = tf.keras.models.load_model("Model-4a-Aug-fa.h5")
 TYPES = ['Cotton', 'Denim', 'Nylon', 'Polyester', 'Silk', 'Wool']
 
 TYPE_INFO_DICT = {
-    # information provided by Robert Jameson on www.fabricfits.com/how-to-tell-if-fabric-is-100-cotton/
+    # information obtained from Robert Jameson on www.fabricfits.com/how-to-tell-if-fabric-is-100-cotton/
     "Cotton": Markup("""Real Cotton, easiliy the most used fabric, is light, soft and breathable.<br>
                         It is also quite stiff and easily wrinkles when you pinch a corner
                         or fold it.<br>
                         When burned it smells like burnt paper and will have an orange afterglow
                         with the ashes being dissolvable in water."""),
-    # information provided by the sewport support team on www.sewport.com/fabrics-directory/denim-fabric
+    # information obtained from the sewport support team on www.sewport.com/fabrics-directory/denim-fabric
     "Denim": Markup("""Denim is a subcattegorie of regular cotton.<br>
                         It can be identified by the intervowen structure of dyed and uncolored threads,
                         is woven using dense threads and is not or only very slightly strechy."""),
@@ -44,8 +44,8 @@ TYPE_INFO_DICT = {
                         after being made wet and shoved together, then it is not wool.""")
 }
 
-
 def predict(save_path: str):
+    #based of https://www.tensorflow.org/tutorials/images/classification
     imgSize = (400, 400)
     img = tf.keras.preprocessing.image.load_img(
         save_path, target_size=imgSize)
@@ -131,7 +131,6 @@ def home():
 def predict_request():
     # Get file and save it
     file = request.files['filetoupload']
-    #filename = secure_filename(file.filename)
 
     # Generate a filename using a universally unique identifier based on the system and local time
     filename = str(uuid1()) + ".png"
