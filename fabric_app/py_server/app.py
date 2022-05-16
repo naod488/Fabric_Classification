@@ -10,13 +10,38 @@ APP = Flask(__name__)
 MODEL = tf.keras.models.load_model("a_model_Aug_V5.h5")
 TYPES = ['Cotton', 'Denim', 'Nylon', 'Polyester', 'Silk', 'Wool']
 
-TYPE_INFO_DICT = { 
-    "Cotton": Markup("""Cotton is"""),
-    "Denim": Markup("""Denim is"""),
-    "Nylon": Markup("""Nylon is"""),
-    "Polyester": Markup("""Polyester is"""),
-    "Silk": Markup("""Silk is"""),
-    "Wool": Markup("""Wool is""")
+TYPE_INFO_DICT = {
+    # information provided by Robert Jameson on www.fabricfits.com/how-to-tell-if-fabric-is-100-cotton/
+    "Cotton": Markup("""Real Cotton, easiliy the most used fabric, is light, soft and breathable.<br>
+                        It is also quite stiff and easily wrinkles when you pinch a corner
+                        or fold it.<br>
+                        When burned it smells like burnt paper and will have an orange afterglow
+                        with the ashes being dissolvable in water."""),
+    # information provided by the sewport support team on www.sewport.com/fabrics-directory/denim-fabric
+    "Denim": Markup("""Denim is a subcattegorie of regular cotton.<br>
+                        It can be identified by the intervowen structure of dyed and uncolored threads,
+                        is woven using dense threads and is not or only very slightly strechy."""),
+    # all of the below information provided by James V.
+    #  on www.sewingiscool.com/how-to-identify-fabrics/
+    "Nylon": Markup("""Nylon is simlar to Polyester by feeling artifical.
+                        It can be strectched further than most other fabrics, and to further
+                        test weither it is nylon or another similar fabric like pyester
+                        a wather test can be conducted, where the nylon fabric should absorg more water."""),
+    "Polyester": Markup("""Polyester used to be very artificial looking and feeling fabric, 
+                            this has slightly improved with the manufacturing process.
+                            When held up to a light source its texture should remain constant.
+                            The weave structure is ordered, symmetrical and even in a robotic fashion,
+                            which is distinct from natural fibres such as cotton."""),
+    "Silk": Markup("""Silk is a very flexible and smoth material.<br>
+                        Rubing the fabric should produce a warm fell, and rubing it against itself 
+                        should produce little friction like it is gliding against itself."""),
+    "Wool": Markup("""Wool is a very warm, durable and easy to care for fabric.<br>
+                        To make certain that a piece of fabric is of wool, one may
+                        perfrom a bleach test, this involves soaking a bit of the fabric
+                        in bleach for about 8 hours, by the end the fabric should be almost
+                        completely disolve.
+                        A felt test can be performed where if the fabric pulls appart
+                        after being made wet and shoved together, then it is not wool.""")
 }
 
 
@@ -88,7 +113,7 @@ def home():
                     image classification.<br>
                     It possess the ability to distinguish among 6 fabrics 
                     [Cotton, Denim, Nylon, Polyester, Silk, Wool], with the limitation of an 
-                    inability to classify a fabric as none 6 mentioned.<br>
+                    inability to classify a fabric as none of the 6 options.<br>
                     <br>
                     To record and upload your image ensure that the top left 400 pixels are sharp or
                     that the image taken is in a 400x400 resolution, taken from aproximately 6cm

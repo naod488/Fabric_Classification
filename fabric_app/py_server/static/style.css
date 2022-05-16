@@ -1,0 +1,83 @@
+body { 
+    background-color: rgb(238, 216, 187);
+} 
+
+#page_container {
+    border-radius: 25px;
+    background-color: antiquewhite;
+    margin: auto;
+    width: 50%;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 20px;
+}
+
+#head_container h1 {
+    font-family: 'Courier New', Courier, monospace;
+    color: rgb(76, 76, 128);
+}
+
+#head_container {
+    background-color: bisque;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    #page_container {
+       width: 100%;
+    }
+
+    #head_container {
+        font-size: medium;
+    }
+ }
+
+#output-data_container {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+    border-radius: 25px;
+    background-color: white;
+    margin: auto;
+    width: 50%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+#output-text_container {
+    margin: auto;
+    width: 70%;
+}
+#output_header{
+    width: 70%;
+    font-weight: bold;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+#output_body{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#upload_container {
+    margin: auto;
+    width: 90%;
+}
+#imageInput {
+    width: 100%;
+    margin-bottom: 0px;
+}
+#submitButton {
+width: 100%;
+}
+
+#image{
+    display: block;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
