@@ -1,7 +1,7 @@
 # Fabric_Classification
 A Convolutional Neural Network (CNN) fabric classification model creation and application deployment project
 
-This folder ontains various ipynb files setup for a google collab environment, h5 files for trained models, some utility files, and a folder containing various
+This folder contains various ipynb files setup for a google collab environment, h5 files for trained models, some utility files, and a folder containing various
 implementations for a tkinter, node.js and python flask for a CNN image classification applications.
 
 # Model creation notebook ipynb files, trained models saves h5 files and datasets
